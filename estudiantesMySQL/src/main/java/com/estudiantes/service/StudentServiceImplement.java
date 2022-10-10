@@ -1,0 +1,50 @@
+package com.estudiantes.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.estudiantes.repository.StudentRepository;
+
+import com.estudiantes.model.Student;
+
+@Service
+public class StudentServiceImplement implements StudentService{
+	
+	@Autowired
+	private StudentRepository studentRepository;//inyecta la dependencia
+	
+	@Override
+	@Transactional //modificaciones
+	public Student save(Student s) {
+		return studentRepository.save(s);
+	}
+
+	@Override
+	@Transactional (readOnly = true) //solo lectura
+	public Iterable<Student> findAll() {
+		return studentRepository.findAll();
+	}
+
+	@Override
+	public Student getStudentByBookNumber(Long bookNumber) {
+		return studentRepository.getStudentByBookNumber(bookNumber);
+	}
+
+	@Override
+	//@Transactional (readOnly = true) solo lectura
+	public Iterable<Student> getStudentsByOrder() {
+		return studentRepository.getStudentsByOrder();
+	}
+
+	@Override
+	public Iterable<Student> getStudentsByGender(String gender) {
+		return studentRepository.getStudentsByGender(gender);
+	}
+
+	@Override
+	public Iterable<Student> getStudentsByCareerAndCity(String career, String city) {
+		return studentRepository.getStudentsByCareerAndCity(career, city);
+	}
+
+}
