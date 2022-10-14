@@ -23,11 +23,11 @@ public class Enrollmentstudent {
 	@Column (nullable = true)
 	private Integer fecha_egreso;
 	
-	@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
 	@JoinColumn(name="id_estudiante")
 	private Student estudiante;
 	
-	@ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
 	@JoinColumn(name="id_carrera")
 	private Career carrera;
 	
