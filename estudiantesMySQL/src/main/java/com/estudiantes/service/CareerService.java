@@ -1,10 +1,20 @@
 package com.estudiantes.service;
 
+import java.util.Optional;
+
+import com.estudiantes.dto.DTOCareerReport;
 import com.estudiantes.model.Career;
 
 public interface CareerService {
 	
-	public Career save(Career c);
+	Career save(Career c);
 	
-	public Iterable<Career> findAll();
+	Iterable<Career> findAll();
+
+	Optional<Career> findById(Integer id);
+
+	Iterable<Career> getCarrerasOrdenCantAlumnos();
+
+	Iterable<DTOCareerReport> getCareerReport();
+
 }

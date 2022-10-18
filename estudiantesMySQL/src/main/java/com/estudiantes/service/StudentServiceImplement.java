@@ -1,5 +1,7 @@
 package com.estudiantes.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +29,7 @@ public class StudentServiceImplement implements StudentService{
 	}
 
 	@Override
-	public Student getStudentByBookNumber(Long bookNumber) {
+	public Student getStudentByBookNumber(Integer bookNumber) {
 		return studentRepository.getStudentByBookNumber(bookNumber);
 	}
 
@@ -45,6 +47,11 @@ public class StudentServiceImplement implements StudentService{
 	@Override
 	public Iterable<Student> getStudentsByCareerAndCity(String career, String city) {
 		return studentRepository.getStudentsByCareerAndCity(career, city);
+	}
+
+	@Override
+	public Optional<Student> findById(Integer id_estudiante) {
+		return studentRepository.findById(id_estudiante);
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.estudiantes.dto.DTOCareerReport;
 import com.estudiantes.model.Career;
 import com.estudiantes.service.CareerService;
 
@@ -23,7 +24,6 @@ public class CareerController {
 	@Autowired
     private CareerService careerService; //inyecta la dependencia
 	
-
     @ApiOperation(value = "Get list of persons by surname ", response = Iterable.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Success|OK"),
@@ -38,7 +38,7 @@ public class CareerController {
     /*/*Estructura de JSON para insertar una carrera
      * id autogenerado
      * {
-		    "nombre": null
+		    "nombre": "historia"
 	    }
      * */
     
@@ -46,5 +46,20 @@ public class CareerController {
     @GetMapping("/")
     public Iterable<Career> getCareers() {
         return careerService.findAll();
+    }
+    
+    //2 f) recuperar las carreras con estudiantes inscriptos, y ordenar por cantidad de inscriptos.
+    @GetMapping("/orderbysubscribers")
+    public Iterable<Career> getCarrerasOrdenCantAlumnos(){
+    	return careerService.getCarrerasOrdenCantAlumnos();
+    }
+    
+    //2 h) generar un reporte de las carreras, que para cada carrera incluya información de los
+//    		inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y
+//    		presentar los años de manera cronológica.
+
+    @GetMapping("/report")
+    public Iterable<DTOCareerReport> getCareerReport(){
+    	return careerService.getCareerReport();
     }
 }

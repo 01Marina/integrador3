@@ -1,6 +1,5 @@
 package com.estudiantes.model;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
-public class Enrollmentstudent {
+public class Enrollmentstudent{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -24,25 +26,27 @@ public class Enrollmentstudent {
 	private Integer fecha_egreso;
 	
 	@ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
-	@JoinColumn(name="id_estudiante")
+	@JoinColumn(name ="id_estudiante", referencedColumnName = "id_estudiante")
+	@JsonProperty(access = Access.WRITE_ONLY)//para que en la api ignore la propiedad para serilizar la cadena
 	private Student estudiante;
 	
 	@ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
-	@JoinColumn(name="id_carrera")
+	@JoinColumn(name="id_carrera", referencedColumnName = "id_carrera")
+	@JsonProperty(access = Access.WRITE_ONLY)//para que en la api ignore la propiedad para serilizar la cadena
 	private Career carrera;
 	
 	public Enrollmentstudent() {
 		super();
 	}
 
-	public Enrollmentstudent(Career carrera, int fechaIngreso, Student estudiante) {
+	public Enrollmentstudent(Student estudiante, Career carrera, int fechaIngreso) {
 		super();
 		this.carrera = carrera;
 		this.fecha_ingreso = fechaIngreso;
 		this.estudiante = estudiante;
 	}
 	
-	public Enrollmentstudent(Career carrera, int fechaIngreso, int fechaEgreso, Student estudiante) {
+	public Enrollmentstudent(Student estudiante, Career carrera, int fechaIngreso, int fechaEgreso) {
 		super();
 		this.carrera = carrera;
 		this.fecha_ingreso = fechaIngreso;
@@ -52,7 +56,7 @@ public class Enrollmentstudent {
 
 	@Override
 	public String toString() {
-		return "Matricula [carrera=" + carrera + ", fechaIngreso=" + fecha_ingreso +"]";
+		return " [estudiante= "+ estudiante +"carrera=" + carrera + ", fechaIngreso=" + fecha_ingreso +"]";
 	}
 
 	public int getFechaIngreso() {
@@ -90,8 +94,5 @@ public class Enrollmentstudent {
 	public void setFechaEgreso(Integer fechaEgreso) {
 		this.fecha_egreso = fechaEgreso;
 	}
-	
-	
-	
 	
 }

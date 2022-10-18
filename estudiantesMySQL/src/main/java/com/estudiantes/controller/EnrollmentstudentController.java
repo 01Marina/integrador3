@@ -7,8 +7,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.estudiantes.dto.DTOEnrollmentstudentBodyInsert;
+import com.estudiantes.model.Career;
 import com.estudiantes.model.Enrollmentstudent;
+import com.estudiantes.model.Student;
+import com.estudiantes.service.CareerService;
 import com.estudiantes.service.EnrollmentstudentService;
+import com.estudiantes.service.StudentService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,26 +28,45 @@ public class EnrollmentstudentController {
 	@Autowired
     private EnrollmentstudentService enrollmentstudentService; //inyecta la dependencia
 	
+	@Autowired
+    private StudentService studentService; //inyecta la dependencia
+	
+	@Autowired
+    private CareerService careerService; //inyecta la dependencia
 
-    @ApiOperation(value = "Get list of persons by surname ", response = Iterable.class)
+    @ApiOperation(value = "Insert Enrollmentstudent ", response = Enrollmentstudent.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
-        @ApiResponse(code = 404, message = "not found!!!") })
+        @ApiResponse(code = 404, message = "not found!!!"),
+        })
     
+    
+    //2 b) matricular un estudiante en una carrera
     @PostMapping("/insert")
-    public Enrollmentstudent newEnrollmentstudent(@RequestBody Enrollmentstudent e) {
-        return enrollmentstudentService.save(e);
+    public Enrollmentstudent newEnrollmentstudent(@RequestBody DTOEnrollmentstudentBodyInsert e) {
+    	System.out.println(e);
+    	//Busco el estudiante al que apunta
+    	Student student = studentService.findById(e.getId_estudiante()).get();
+    	//Busco la carrera a la que apunta
+    	Career career = careerService.findById(e.getId_carrera()).get();
+    	//creo la matricula
+    	Enrollmentstudent saveE;
+    	if(e.getFecha_egreso() != null) {
+    		saveE = new Enrollmentstudent(student, career, e.getFecha_ingreso(), e.getFecha_egreso() );
+    	}else {
+    		saveE = new Enrollmentstudent(student, career, e.getFecha_ingreso());
+    	}
+		return enrollmentstudentService.save(saveE);
     }
-    
     /*/*Estructura de JSON para insertar una matricula
      * id autogenerado
      * {
-		    "estudiante": 1,
-		    "carrera": 2,
-		    "fechaIngreso": 2022,
-		    "fechaEgreso": null
+		    "id_estudiante": 1,
+		    "id_carrera": 2,
+		    "fecha_ingreso": 2012,
+		    "fecha_egreso": 2021
 		}*/
     
   //Trae todas las matrticulas

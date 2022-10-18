@@ -1,8 +1,11 @@
 package com.estudiantes.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.estudiantes.dto.DTOCareerReport;
 import com.estudiantes.model.Career;
 import com.estudiantes.repository.CareerRepository;
 
@@ -20,6 +23,21 @@ public class CareerServiceImplement implements CareerService{
 	@Override
 	public Iterable<Career> findAll() {
 		return careerRepository.findAll();
+	}
+
+	@Override
+	public Optional<Career> findById(Integer id) {
+		return careerRepository.findById(id);
+	}
+
+	@Override
+	public Iterable<Career> getCarrerasOrdenCantAlumnos() {
+		return careerRepository.getCarrerasOrdenCantAlumnos();
+	}
+
+	@Override
+	public Iterable<DTOCareerReport> getCareerReport() {
+		return careerRepository.getCareerReport();
 	}
 
 }

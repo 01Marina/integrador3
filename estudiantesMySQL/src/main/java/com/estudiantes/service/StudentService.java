@@ -1,18 +1,22 @@
 package com.estudiantes.service;
 
+import java.util.Optional;
+
 import com.estudiantes.model.Student;
 
 public interface StudentService {
 	
-	public Student save(Student s);
+	Student save(Student s);
 	
-	public Iterable<Student> findAll();
+	Iterable<Student> findAll();
 
-	public Student getStudentByBookNumber(Long bookNumber);
+	Student getStudentByBookNumber(Integer bookNumber);
 
-	public Iterable<Student> getStudentsByOrder();
+	Iterable<Student> getStudentsByOrder();
 
-	public Iterable<Student> getStudentsByGender(String gender);
+	Iterable<Student> getStudentsByGender(String gender);
 
-	public Iterable<Student> getStudentsByCareerAndCity(String career, String city);
+	Iterable<Student> getStudentsByCareerAndCity(String career, String city);
+
+	Optional<Student> findById(Integer id_estudiante);
 }

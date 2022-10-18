@@ -437,7 +437,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"matemáticas\"\r\n    }",
+					"raw": "{\r\n    \"nombre\": \"matemáticas\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -522,7 +522,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"física\"\r\n    }",
+					"raw": "{\r\n    \"nombre\": \"física\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -607,7 +607,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"álgebra\"\r\n    }",
+					"raw": "{\r\n    \"nombre\": \"álgebra\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -692,7 +692,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"historia\"\r\n    }",
+					"raw": "{\r\n    \"nombre\": \"historia\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -777,7 +777,347 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"estudiante\": null,\r\n    \"carrera\": null,\r\n    \"fechaIngreso\": 2012,\r\n    \"fechaEgreso\": 2021\r\n    }",
+					"raw": "{\r\n    \"id_estudiante\": 1,\r\n    \"id_carrera\": 2,\r\n    \"fecha_ingreso\": 2003\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/enrollmentstudents/insert",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"enrollmentstudents",
+						"insert"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "localhost:8080/api/students/insert",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nombre\": \"Juan\",\r\n        \"edad\": 34,\r\n        \"genero\": \"m\",\r\n        \"dni\": 3454543,\r\n        \"ciudad_de_residencia\": \"Balcarce\",\r\n        \"libreta_universitaria\": 5678899,\r\n        \"matriculas\": []\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/students/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"students",
+								"insert"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 16:31:06 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id_estudiante\": 1,\n    \"nombre\": \"Juan\",\n    \"edad\": 34,\n    \"genero\": \"m\",\n    \"dni\": 3454543,\n    \"ciudad_de_residencia\": \"Balcarce\",\n    \"libreta_universitaria\": 5678899,\n    \"matriculas\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/api/enrollmentstudents/insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_estudiante\": 1,\r\n    \"id_carrera\": 2,\r\n    \"fecha_ingreso\": 2012,\r\n    \"fecha_egreso\": 2021\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/enrollmentstudents/insert",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"enrollmentstudents",
+						"insert"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "localhost:8080/api/students/insert",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nombre\": \"Juan\",\r\n        \"edad\": 34,\r\n        \"genero\": \"m\",\r\n        \"dni\": 3454543,\r\n        \"ciudad_de_residencia\": \"Balcarce\",\r\n        \"libreta_universitaria\": 5678899,\r\n        \"matriculas\": []\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/students/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"students",
+								"insert"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 16:31:06 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id_estudiante\": 1,\n    \"nombre\": \"Juan\",\n    \"edad\": 34,\n    \"genero\": \"m\",\n    \"dni\": 3454543,\n    \"ciudad_de_residencia\": \"Balcarce\",\n    \"libreta_universitaria\": 5678899,\n    \"matriculas\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/api/enrollmentstudents/insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_estudiante\": 2,\r\n    \"id_carrera\": 7,\r\n    \"fecha_ingreso\": 2012,\r\n    \"fecha_egreso\": 2021\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/enrollmentstudents/insert",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"enrollmentstudents",
+						"insert"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "localhost:8080/api/students/insert",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nombre\": \"Juan\",\r\n        \"edad\": 34,\r\n        \"genero\": \"m\",\r\n        \"dni\": 3454543,\r\n        \"ciudad_de_residencia\": \"Balcarce\",\r\n        \"libreta_universitaria\": 5678899,\r\n        \"matriculas\": []\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/students/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"students",
+								"insert"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 16:31:06 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id_estudiante\": 1,\n    \"nombre\": \"Juan\",\n    \"edad\": 34,\n    \"genero\": \"m\",\n    \"dni\": 3454543,\n    \"ciudad_de_residencia\": \"Balcarce\",\n    \"libreta_universitaria\": 5678899,\n    \"matriculas\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/api/enrollmentstudents/insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_estudiante\": 3,\r\n    \"id_carrera\": 8,\r\n    \"fecha_ingreso\": 2012,\r\n    \"fecha_egreso\": 2021\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/enrollmentstudents/insert",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"enrollmentstudents",
+						"insert"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "localhost:8080/api/students/insert",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"nombre\": \"Juan\",\r\n        \"edad\": 34,\r\n        \"genero\": \"m\",\r\n        \"dni\": 3454543,\r\n        \"ciudad_de_residencia\": \"Balcarce\",\r\n        \"libreta_universitaria\": 5678899,\r\n        \"matriculas\": []\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/students/insert",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"students",
+								"insert"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Oct 2022 16:31:06 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id_estudiante\": 1,\n    \"nombre\": \"Juan\",\n    \"edad\": 34,\n    \"genero\": \"m\",\n    \"dni\": 3454543,\n    \"ciudad_de_residencia\": \"Balcarce\",\n    \"libreta_universitaria\": 5678899,\n    \"matriculas\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "localhost:8080/api/enrollmentstudents/insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_estudiante\": 1,\r\n    \"id_carrera\": 8,\r\n    \"fecha_ingreso\": 2012,\r\n    \"fecha_egreso\": 2021\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -865,7 +1205,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"Juan\",\r\n        \"edad\": 34,\r\n        \"genero\": \"m\",\r\n        \"dni\": 3454543,\r\n        \"ciudad_de_residencia\": \"Balcarce\",\r\n        \"libreta_universitaria\": 5678899,\r\n        \"matriculas\": []\r\n    }",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -953,7 +1293,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"Camila\",\r\n        \"edad\": 23,\r\n        \"genero\": \"f\",\r\n        \"dni\": 78656443,\r\n        \"ciudad_de_residencia\": \"Tandil\",\r\n        \"libreta_universitaria\": 3445,\r\n        \"matriculas\": []\r\n    }",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1041,7 +1381,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"Camila\",\r\n        \"edad\": 23,\r\n        \"genero\": \"f\",\r\n        \"dni\": 78656443,\r\n        \"ciudad_de_residencia\": \"Tandil\",\r\n        \"libreta_universitaria\": 3445,\r\n        \"matriculas\": []\r\n    }",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1121,7 +1461,7 @@
 			]
 		},
 		{
-			"name": "localhost:8080/api/students//gender/f",
+			"name": "localhost:8080/api/students/gender/f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1130,7 +1470,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"Camila\",\r\n        \"edad\": 23,\r\n        \"genero\": \"f\",\r\n        \"dni\": 78656443,\r\n        \"ciudad_de_residencia\": \"Tandil\",\r\n        \"libreta_universitaria\": 3445,\r\n        \"matriculas\": []\r\n    }",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1219,7 +1559,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"nombre\": \"Juan\",\r\n        \"edad\": 34,\r\n        \"genero\": \"m\",\r\n        \"dni\": 3454543,\r\n        \"ciudad_de_residencia\": \"Balcarce\",\r\n        \"libreta_universitaria\": 5678899,\r\n        \"matriculas\": []\r\n    }",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1298,6 +1638,26 @@
 			]
 		},
 		{
+			"name": "localhost:8080/api/careers/orderbysubscribers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/careers/orderbysubscribers",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"careers",
+						"orderbysubscribers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "localhost:8080/api/enrollmentstudents/",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -1307,7 +1667,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"estudiante\": null,\r\n    \"carrera\": null,\r\n    \"fechaIngreso\": 2012,\r\n    \"fechaEgreso\": 2021\r\n    }",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1384,6 +1744,26 @@
 					"body": "{\n    \"id_estudiante\": 1,\n    \"nombre\": \"Juan\",\n    \"edad\": 34,\n    \"genero\": \"m\",\n    \"dni\": 3454543,\n    \"ciudad_de_residencia\": \"Balcarce\",\n    \"libreta_universitaria\": 5678899,\n    \"matriculas\": []\n}"
 				}
 			]
+		},
+		{
+			"name": "localhost:8080/api/careers/report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/careers/report",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"careers",
+						"report"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -7,21 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {
-//
-//    @Query("SELECT s FROM Student s where t.surname = :surname")
-//    public List<Student> findAllBySurname(String surname);
-//
-//    @Query("SELECT t FROM Person t where t.name = :name")
-//    public List<Student> findAllByName(String name);
-	
-	
-//	 @Query("SELECT s FROM Students s")
-//		public List<Student> findAll();
-	
+public interface StudentRepository extends JpaRepository<Student, Integer> {
     
     @Query("SELECT e FROM Student e WHERE e.libreta_universitaria = :bookNumber")
-	public Student getStudentByBookNumber(Long bookNumber);
+	public Student getStudentByBookNumber(Integer bookNumber);
     
     @Query("SELECT s FROM Student s ORDER BY s.nombre ASC")
 	public Iterable<Student> getStudentsByOrder();

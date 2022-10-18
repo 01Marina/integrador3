@@ -12,11 +12,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
+
+import javax.persistence.ConstructorResult;
+import javax.persistence.ColumnResult;
+
 @Entity
+
+//Aplico mapeo sobre esta entidad para poder aplicar DTO en respuestas del repository con consultas nativas sql
+//para generar la case que guarda el reporte de las carreras
+
+@NamedNativeQuery(
+	    name = "Career.getCareerReport",
+	    query = "SELECT c.nombre AS nombreCarrera, m.fecha_ingreso AS anio, COUNT(*) AS inscriptos, sum(CASE WHEN  m.fecha_egreso IS NULL THEN 0 ELSE 1 END) AS graduados FROM career c JOIN enrollmentstudent m ON c.id_carrera = m.id_carrera GROUP BY m.fecha_ingreso, c.nombre  ORDER BY c.nombre DESC, m.fecha_ingreso DESC",
+	    resultClass = com.estudiantes.dto.DTOCareerReport.class,
+	    resultSetMapping = "Mapping.getCareerReport"
+	)
+@SqlResultSetMapping(
+    name = "Mapping.getCareerReport",
+    classes = @ConstructorResult(
+        targetClass = com.estudiantes.dto.DTOCareerReport.class,
+        columns = {
+            @ColumnResult(name = "nombreCarrera", type = String.class),
+            @ColumnResult(name = "anio", type = Integer.class),
+            @ColumnResult(name = "inscriptos", type = Integer.class),
+            @ColumnResult(name = "graduados", type = Integer.class)
+        }
+    )
+)
+
 public class Career {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id_carrera;
+	private Integer id_carrera;
 	@Column
 	private String nombre;
 	
@@ -38,14 +67,16 @@ public class Career {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getId() {
+	
+	public Integer getId_carrera() {
 		return id_carrera;
 	}
 	@Override
 	public String toString() {
 		return "Carrera [idCarrera=" + id_carrera + ", nombre=" + nombre + "]";
 	}
-	
-	
+	public List<Enrollmentstudent> getMatriculas() {
+		return matriculas;
+	}
 	
 }

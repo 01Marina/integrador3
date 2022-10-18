@@ -63,7 +63,7 @@ public class StudentControllerJpa {
     //2d) recuperar un estudiante, en base a su número de libreta universitaria.
     //TESTEADO EN POSTMAN
     @GetMapping("/bookNumber/{bookNumber}")
-    public Student getStudentByBookNumber(@PathVariable Long bookNumber) {
+    public Student getStudentByBookNumber(@PathVariable Integer bookNumber) {
     	return studentService.getStudentByBookNumber(bookNumber);
     }
   

@@ -19,19 +19,20 @@ public class Student {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id_estudiante;
+	private Integer id_estudiante;
 	@Column //(nullable=false)
 	private String nombre;
 	@Column(name="anios")
-	private int edad;
+	private Integer edad;
 	@Column
 	private String genero;
 	@Column
-	private int dni;
+	private Integer dni;
 	@Column
 	private String ciudad_de_residencia;
 	@Column
-	private Long libreta_universitaria;
+	private Integer libreta_universitaria;
+	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy = "estudiante")
 	private List<Enrollmentstudent> matriculas;
 	
@@ -40,8 +41,8 @@ public class Student {
 		this.matriculas = new ArrayList<Enrollmentstudent>();
 	}
 
-	public Student(String nombre, int edad, String genero, int dni, String ciudadDeResidencia,
-			Long libretaUniversitaria) {
+	public Student(String nombre, Integer edad, String genero, Integer dni, String ciudadDeResidencia,
+			Integer libretaUniversitaria) {
 		super();
 		this.nombre = nombre;
 		this.edad = edad;
@@ -71,7 +72,7 @@ public class Student {
 		this.nombre = nombre;
 	}
 
-	public int getEdad() {
+	public Integer getEdad() {
 		return edad;
 	}
 
@@ -87,11 +88,11 @@ public class Student {
 		this.genero = genero;
 	}
 
-	public int getDni() {
+	public Integer getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(Integer dni) {
 		this.dni = dni;
 	}
 
@@ -103,11 +104,11 @@ public class Student {
 		this.ciudad_de_residencia = ciudad_de_residencia;
 	}
 
-	public Long getLibreta_universitaria() {
+	public Integer getLibreta_universitaria() {
 		return libreta_universitaria;
 	}
 
-	public void setLibreta_universitaria(Long libreta_universitaria) {
+	public void setLibreta_universitaria(Integer libreta_universitaria) {
 		this.libreta_universitaria = libreta_universitaria;
 	}
 
@@ -119,7 +120,7 @@ public class Student {
 		this.matriculas = matriculas;
 	}
 
-	public Long getId_estudiante() {
+	public Integer getId_estudiante() {
 		return id_estudiante;
 	}
 	
