@@ -11,26 +11,37 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-//import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 //@Table(name="students")
 public class Student {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id_estudiante;
+	
 	@Column //(nullable=false)
+	@NotEmpty
 	private String nombre;
+	
 	@Column(name="anios")
+	@NotNull
 	private Integer edad;
+	
 	@Column
 	private String genero;
+	
 	@Column
+	@NotNull
 	private Integer dni;
+	
 	@Column
 	private String ciudad_de_residencia;
+	
 	@Column
+	@NotNull
 	private Integer libreta_universitaria;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy = "estudiante")

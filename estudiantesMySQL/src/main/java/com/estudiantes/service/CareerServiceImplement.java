@@ -40,4 +40,13 @@ public class CareerServiceImplement implements CareerService{
 		return careerRepository.getCareerReport();
 	}
 
+	@Override
+	public boolean existStudent(Career c) {
+		Career exist = careerRepository.existCareer(c.getNombre());
+		if(exist != null) {
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -1,6 +1,10 @@
 package com.estudiantes.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,23 +28,27 @@ public class CareerController {
 	@Autowired
     private CareerService careerService; //inyecta la dependencia
 	
+	@PostMapping("/insert")
+	public ResponseEntity<Career> newStudent2(@Valid @RequestBody Career c) {
+       if(careerService.existStudent(c)) {
+    	   return new ResponseEntity<>(HttpStatus.CONFLICT);
+       }
+       return new ResponseEntity<>(careerService.save(c), HttpStatus.CREATED);
+    }
+	
+	 /*/*Estructura de JSON para insertar una carrera
+     * id autogenerado
+     * {
+		    "nombre": "historia"
+	    }
+     * */
+	
     @ApiOperation(value = "Get list of persons by surname ", response = Iterable.class)
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Success|OK"),
         @ApiResponse(code = 401, message = "not authorized!"),
         @ApiResponse(code = 403, message = "forbidden!!!"),
         @ApiResponse(code = 404, message = "not found!!!") })
-    
-    @PostMapping("/insert")
-    public Career newCareer(@RequestBody Career c) {
-        return careerService.save(c);
-    }
-    /*/*Estructura de JSON para insertar una carrera
-     * id autogenerado
-     * {
-		    "nombre": "historia"
-	    }
-     * */
     
   //Trae todas las carreras
     @GetMapping("/")
@@ -57,7 +65,10 @@ public class CareerController {
     //2 h) generar un reporte de las carreras, que para cada carrera incluya información de los
 //    		inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y
 //    		presentar los años de manera cronológica.
-
+    
+    //para su realización agregó en la case Career el mapeo a otro clase de esta misma
+    //y se agregó query sql nativo que consume este mapeo
+    // ver lines 23 a 43 de la clase Career.
     @GetMapping("/report")
     public Iterable<DTOCareerReport> getCareerReport(){
     	return careerService.getCareerReport();

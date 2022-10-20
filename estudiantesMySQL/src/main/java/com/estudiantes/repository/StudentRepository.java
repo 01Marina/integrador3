@@ -20,4 +20,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     
     @Query("SELECT s FROM Student s JOIN s.matriculas m JOIN m.carrera c WHERE c.nombre = :career AND s.ciudad_de_residencia = :city ")
     public Iterable<Student> getStudentsByCareerAndCity(String career, String city);
+
+    @Query("SELECT s FROM Student s WHERE s.dni = :dni OR s.libreta_universitaria=:libreta_universitaria")
+	public Student existStudent(Integer dni, Integer libreta_universitaria);
 }

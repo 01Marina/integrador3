@@ -4,7 +4,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.estudiantes.model.Student;
@@ -26,19 +31,16 @@ public class StudentControllerJpa {
     }
     
     
-        @ApiOperation(value = "Get list of persons by surname ", response = Iterable.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success|OK"),
-            @ApiResponse(code = 401, message = "not authorized!"),
-            @ApiResponse(code = 403, message = "forbidden!!!"),
-            @ApiResponse(code = 404, message = "not found!!!") })
-        
     //2a
     //crea un nuevo estudiante
     @PostMapping("/insert")
-    public Student newStudent(@RequestBody Student s) {
-        return studentService.save(s);
+    public ResponseEntity<Student> newStudent2(@Valid @RequestBody Student s) {
+       if(studentService.existStudent(s)) {
+    	   return new ResponseEntity<>(HttpStatus.CONFLICT);
+       }
+       return new ResponseEntity<>(studentService.save(s), HttpStatus.CREATED);
     }
+    
     /*Estructura de JSON para insertar un estudiante
      * id autogenerado
      * 
@@ -52,6 +54,14 @@ public class StudentControllerJpa {
 	        "matriculas": []
         }
      * */
+    
+    
+        @ApiOperation(value = "Get list of persons by surname ", response = Iterable.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success|OK"),
+            @ApiResponse(code = 401, message = "not authorized!"),
+            @ApiResponse(code = 403, message = "forbidden!!!"),
+            @ApiResponse(code = 404, message = "not found!!!") })
         
     //2c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple
     //TESTEADO EN POSTMAN

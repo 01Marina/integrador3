@@ -1,5 +1,7 @@
 package com.estudiantes.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 @RestController
 @RequestMapping("/api/enrollmentstudents")
 @Api(value = "EnrollmentstudentController")
@@ -33,19 +38,14 @@ public class EnrollmentstudentController {
 	
 	@Autowired
     private CareerService careerService; //inyecta la dependencia
-
-    @ApiOperation(value = "Insert Enrollmentstudent ", response = Enrollmentstudent.class)
-    @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Success|OK"),
-        @ApiResponse(code = 401, message = "not authorized!"),
-        @ApiResponse(code = 403, message = "forbidden!!!"),
-        @ApiResponse(code = 404, message = "not found!!!"),
-        })
     
-    
-    //2 b) matricular un estudiante en una carrera
+   
+	 //2 b) matricular un estudiante en una carrera
     @PostMapping("/insert")
-    public Enrollmentstudent newEnrollmentstudent(@RequestBody DTOEnrollmentstudentBodyInsert e) {
+    public ResponseEntity<Enrollmentstudent> newEnrollmentstudent(@Valid @RequestBody DTOEnrollmentstudentBodyInsert e) {
+    	if(enrollmentstudentService.existEnrollmentstudent(e)) {
+    		return new ResponseEntity<>(HttpStatus.CONFLICT);
+    	}
     	System.out.println(e);
     	//Busco el estudiante al que apunta
     	Student student = studentService.findById(e.getId_estudiante()).get();
@@ -58,7 +58,7 @@ public class EnrollmentstudentController {
     	}else {
     		saveE = new Enrollmentstudent(student, career, e.getFecha_ingreso());
     	}
-		return enrollmentstudentService.save(saveE);
+    	return new ResponseEntity<>(enrollmentstudentService.save(saveE), HttpStatus.CONFLICT);
     }
     /*/*Estructura de JSON para insertar una matricula
      * id autogenerado
@@ -68,6 +68,16 @@ public class EnrollmentstudentController {
 		    "fecha_ingreso": 2012,
 		    "fecha_egreso": 2021
 		}*/
+    
+    
+    @ApiOperation(value = "Insert Enrollmentstudent ", response = Enrollmentstudent.class)
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Success|OK"),
+        @ApiResponse(code = 401, message = "not authorized!"),
+        @ApiResponse(code = 403, message = "forbidden!!!"),
+        @ApiResponse(code = 404, message = "not found!!!"),
+        })
+    
     
   //Trae todas las matrticulas
     @GetMapping("/")

@@ -18,4 +18,7 @@ public interface CareerRepository extends JpaRepository<Career, Integer>{
 	
 	@Query(name = "Career.getCareerReport", nativeQuery = true)
 	public Iterable<DTOCareerReport> getCareerReport();
+	
+	@Query("SELECT c FROM Career c WHERE c.nombre=:nombre")
+	public Career existCareer(String nombre);
 }

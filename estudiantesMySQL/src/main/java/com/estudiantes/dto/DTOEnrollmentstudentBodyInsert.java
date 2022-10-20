@@ -2,6 +2,8 @@ package com.estudiantes.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
 //implementa Serializable para que sea un objeto que se envia atravez de a red
 public class DTOEnrollmentstudentBodyInsert implements Serializable{
 
@@ -9,11 +11,11 @@ public class DTOEnrollmentstudentBodyInsert implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	@NotNull
 	private Integer id_estudiante;
-	
+	@NotNull
 	private Integer id_carrera;
-	
+	@NotNull
 	private Integer fecha_ingreso;
 	
 	private Integer fecha_egreso;

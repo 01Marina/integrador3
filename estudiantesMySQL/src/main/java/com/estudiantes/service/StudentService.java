@@ -2,6 +2,8 @@ package com.estudiantes.service;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.estudiantes.model.Student;
 
 public interface StudentService {
@@ -19,4 +21,7 @@ public interface StudentService {
 	Iterable<Student> getStudentsByCareerAndCity(String career, String city);
 
 	Optional<Student> findById(Integer id_estudiante);
+
+	boolean existStudent(@Valid Student s);
+
 }

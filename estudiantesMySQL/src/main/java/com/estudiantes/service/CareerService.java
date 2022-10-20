@@ -17,4 +17,6 @@ public interface CareerService {
 
 	Iterable<DTOCareerReport> getCareerReport();
 
+	boolean existStudent(Career c);
+
 }

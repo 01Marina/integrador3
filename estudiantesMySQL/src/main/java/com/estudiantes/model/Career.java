@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.SqlResultSetMapping;
-
+import javax.validation.constraints.NotEmpty;
 import javax.persistence.ConstructorResult;
 import javax.persistence.ColumnResult;
 
@@ -44,9 +44,10 @@ import javax.persistence.ColumnResult;
 
 public class Career {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id_carrera;
 	@Column
+	@NotEmpty
 	private String nombre;
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "carrera", cascade=CascadeType.ALL)

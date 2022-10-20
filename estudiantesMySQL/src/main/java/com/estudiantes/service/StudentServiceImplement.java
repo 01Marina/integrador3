@@ -54,4 +54,14 @@ public class StudentServiceImplement implements StudentService{
 		return studentRepository.findById(id_estudiante);
 	}
 
+	@Override
+	public boolean existStudent(Student s) {
+		Student exist = studentRepository.existStudent(s.getDni(), s.getLibreta_universitaria());
+		if(exist != null){
+			return true;
+		}
+		return false;
+	}
+
+
 }

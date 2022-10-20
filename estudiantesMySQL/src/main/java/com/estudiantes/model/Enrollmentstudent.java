@@ -20,10 +20,13 @@ public class Enrollmentstudent{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_matricula;
 	@Column
-	private int fecha_ingreso;
+	private Integer fecha_ingreso;
 	
 	@Column (nullable = true)
 	private Integer fecha_egreso;
+	
+	@Column (nullable = true)
+	private Integer antiguedad;
 	
 	@ManyToOne(cascade=CascadeType.MERGE, fetch=FetchType.LAZY)
 	@JoinColumn(name ="id_estudiante", referencedColumnName = "id_estudiante")
@@ -39,27 +42,31 @@ public class Enrollmentstudent{
 		super();
 	}
 
-	public Enrollmentstudent(Student estudiante, Career carrera, int fechaIngreso) {
+	public Enrollmentstudent(Student estudiante, Career carrera, Integer fechaIngreso) {
 		super();
 		this.carrera = carrera;
 		this.fecha_ingreso = fechaIngreso;
 		this.estudiante = estudiante;
+		this.antiguedad = null;
 	}
 	
-	public Enrollmentstudent(Student estudiante, Career carrera, int fechaIngreso, int fechaEgreso) {
+	public Enrollmentstudent(Student estudiante, Career carrera, Integer fechaIngreso, Integer fechaEgreso) {
 		super();
 		this.carrera = carrera;
 		this.fecha_ingreso = fechaIngreso;
 		this.fecha_egreso = fechaEgreso;
 		this.estudiante = estudiante;
+		this.antiguedad = this.getAntiguedad();
 	}
 
 	@Override
 	public String toString() {
-		return " [estudiante= "+ estudiante +"carrera=" + carrera + ", fechaIngreso=" + fecha_ingreso +"]";
+		return "Enrollmentstudent [id_matricula=" + id_matricula + ", fecha_ingreso=" + fecha_ingreso
+				+ ", fecha_egreso=" + fecha_egreso + ", antiguedad=" + antiguedad + ", estudiante=" + estudiante
+				+ ", carrera=" + carrera + "]";
 	}
 
-	public int getFechaIngreso() {
+	public Integer getFechaIngreso() {
 		return fecha_ingreso;
 	}
 
@@ -83,7 +90,7 @@ public class Enrollmentstudent{
 		this.carrera = carrera;
 	}
 
-	public int getIdMatricula() {
+	public Integer getIdMatricula() {
 		return id_matricula;
 	}
 
@@ -94,5 +101,14 @@ public class Enrollmentstudent{
 	public void setFechaEgreso(Integer fechaEgreso) {
 		this.fecha_egreso = fechaEgreso;
 	}
+
+	public Integer getAntiguedad() {
+		return fecha_egreso - fecha_ingreso;
+	}
+
+	public void setAntiguedad(Integer antiguedad) {
+		this.antiguedad = antiguedad;
+	}
+	
 	
 }
