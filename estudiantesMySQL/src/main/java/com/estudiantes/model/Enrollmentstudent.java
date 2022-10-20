@@ -1,5 +1,7 @@
 package com.estudiantes.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 public class Enrollmentstudent{
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id_matricula;
 	@Column
 	private Integer fecha_ingreso;
@@ -56,8 +58,9 @@ public class Enrollmentstudent{
 		this.fecha_ingreso = fechaIngreso;
 		this.fecha_egreso = fechaEgreso;
 		this.estudiante = estudiante;
-		this.antiguedad = this.getAntiguedad();
+		this.antiguedad = this.calcularAntiguedad();
 	}
+
 
 	@Override
 	public String toString() {
@@ -103,12 +106,21 @@ public class Enrollmentstudent{
 	}
 
 	public Integer getAntiguedad() {
-		return fecha_egreso - fecha_ingreso;
+		if(this.fecha_egreso == null) {
+			LocalDateTime fechaActual = LocalDateTime.now();
+			Integer anioActual = fechaActual.getYear();
+			return anioActual-fecha_ingreso;
+		}
+		return antiguedad;
 	}
 
 	public void setAntiguedad(Integer antiguedad) {
 		this.antiguedad = antiguedad;
 	}
 	
+
+	private Integer calcularAntiguedad() {
+		return fecha_egreso - fecha_ingreso;
+	}
 	
 }

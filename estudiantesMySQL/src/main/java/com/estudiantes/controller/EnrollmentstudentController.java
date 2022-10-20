@@ -53,12 +53,17 @@ public class EnrollmentstudentController {
     	Career career = careerService.findById(e.getId_carrera()).get();
     	//creo la matricula
     	Enrollmentstudent saveE;
+    	System.out.println("IMPRIMO YO: "+e.getFecha_egreso());
     	if(e.getFecha_egreso() != null) {
-    		saveE = new Enrollmentstudent(student, career, e.getFecha_ingreso(), e.getFecha_egreso() );
+    		saveE = new Enrollmentstudent(student, career, e.getFecha_ingreso(), e.getFecha_egreso());
     	}else {
     		saveE = new Enrollmentstudent(student, career, e.getFecha_ingreso());
     	}
-    	return new ResponseEntity<>(enrollmentstudentService.save(saveE), HttpStatus.CONFLICT);
+    	System.out.println("IMPRIMO YO: "+saveE);
+    	
+    	Enrollmentstudent saveEe= enrollmentstudentService.save(saveE);
+    	System.out.println("IMPRIMO YO 2 : "+saveEe);
+    	return new ResponseEntity<>(saveEe, HttpStatus.CREATED);
     }
     /*/*Estructura de JSON para insertar una matricula
      * id autogenerado
